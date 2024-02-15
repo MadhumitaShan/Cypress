@@ -4,12 +4,6 @@ import Swaglabslogin from "../../page-objects/pages/Swaglabslogin";
 import SwagProducts from "../../page-objects/pages/SwagProducts";
 
 describe('Shopping Page Verification', () => {
-  let products
-    before(() => {  
-        cy.fixture('products').then((data) => {
-            products = data;
-        });
-    })
 
     it('should navigate to shopping page from login page', () => {
         cy.url().should('include', '/inventory.html'); // Verify that the URL contains '/inventory.html'
