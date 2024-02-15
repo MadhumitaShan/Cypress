@@ -8,7 +8,10 @@ it('should have "back to product" option in product detail page', () => {
 
   it('should navigate back to All products list page when clicking on "back to product" option', () => {
       cy.get('#back-to-products').click().url().should('include', '/inventory');
-  });
+      cy.wait(2000);
+      cy.get('#add-to-cart-sauce-labs-onesie').click();
+      cy.wait(2000);
+    });
 
   it('should display all items of product when clicking on "All items" from productdetail page', () => {
     cy.get('#react-burger-menu-btn').click();
@@ -17,13 +20,12 @@ it('should have "back to product" option in product detail page', () => {
   });
 
   it('should display "Remove" icon in red color when clicking on "Add to cart"', () => {
-    cy.get('#add-to-cart-sauce-labs-backpack').click();
     cy.wait(6000);
     cy.get('#remove-sauce-labs-backpack').should('be.visible');
   });
 
   it('should change the cart count to 1 in red color when clicking on "Add to cart"', () => {
-      cy.get('#add-to-cart-sauce-labs-onesie').click();
+    
     cy.get('.shopping_cart_badge').should('have.text', '2');
     //cy.xpath('//button[@id="add-to-cart-sauce-labs-backpack"]/..').click();
     cy.get('#remove-sauce-labs-backpack').click();
