@@ -23,6 +23,7 @@ it('should have "back to product" option in product detail page', () => {
   });
 
   it('should change the cart count to 1 in red color when clicking on "Add to cart"', () => {
+      cy.get('#add-to-cart-sauce-labs-onesie').click();
     cy.get('.shopping_cart_badge').should('have.text', '2');
     //cy.xpath('//button[@id="add-to-cart-sauce-labs-backpack"]/..').click();
     cy.get('#remove-sauce-labs-backpack').click();
