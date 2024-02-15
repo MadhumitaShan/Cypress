@@ -5,6 +5,7 @@ import SwagProducts from "../../page-objects/pages/SwagProducts";
 
 describe('Shopping Page Verification', () => {
 
+
     it('should navigate to shopping page from login page', () => {
         cy.url().should('include', '/inventory.html'); // Verify that the URL contains '/inventory.html'
       })
@@ -182,26 +183,29 @@ describe('Shopping Page Verification', () => {
     });
   
     it('should display "Remove" icon in red color when clicking on "Add to cart"', () => {
+      cy.wait(2000);
       cy.get('#add-to-cart-sauce-labs-backpack').click();
       cy.wait(6000);
       cy.get('#remove-sauce-labs-backpack').should('be.visible');
+      cy.wait(2000);
+      cy.get('#add-to-cart-sauce-labs-bike-light').click();
     });
   
     it('should change the cart count to 1 in red color when clicking on "Add to cart"', () => {
-      cy.get('.shopping_cart_badge').should('have.text', '1');
+      cy.get('.shopping_cart_badge').should('have.text', '2');
       //cy.xpath('//button[@id="add-to-cart-sauce-labs-backpack"]/..').click();
       cy.get('#remove-sauce-labs-backpack').click();
       // Verify that the cart count has changed to 1
       cy.wait(6000);
-      cy.get('.shopping_cart_badge').should('have.text', '0');
+      cy.get('.shopping_cart_badge').should('have.text', '1');
     });
   
     it('should increase the number in cart when clicking "Add to cart" for different products', () => {
       cy.get('#add-to-cart-sauce-labs-onesie').click();
-      cy.get('.shopping_cart_badge').should('have.text', '1');
+      cy.get('.shopping_cart_badge').should('have.text', '2');
       cy.wait(3000);
       cy.get('#remove-sauce-labs-onesie').click();
-      cy.get('.shopping_cart_badge').should('have.text', '0');
+      cy.get('.shopping_cart_badge').should('have.text', '1');
     });
 
     beforeEach(function() {
